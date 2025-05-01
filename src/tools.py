@@ -7,9 +7,9 @@ def checkVersion(nodePackageProps: dict, strNodeModules: dict, dependencyPropsDi
     packageJsonValue = dependencyPropsDic[key]
 
     clearedJsonValue = packageJsonValue.replace("^", "")
-    if nodeVersionValue == clearedJsonValue:
-        credential= PackageCredentials('testPackageName', nodeVersionValue, packageJsonValue)
-        print(credential)
+    if nodeVersionValue != clearedJsonValue:
+        credential= PackageCredentials( key, nodeVersionValue, packageJsonValue)
+        
         
         return credential
 
