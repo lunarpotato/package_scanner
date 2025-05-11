@@ -8,11 +8,13 @@ def checkVersion(nodePackageProps: dict, strNodeModules: dict, dependencyPropsDi
 
     clearedJsonValue = packageJsonValue.replace("^", "")
     if nodeVersionValue != clearedJsonValue:
-        credential= PackageCredentials( key, nodeVersionValue, packageJsonValue)
+        if clearedJsonValue.isnumeric() == False:
+
+            credential= PackageCredentials( key, nodeVersionValue, packageJsonValue)
         
     
         
-        return credential
+            return credential
 
     else :
         return     

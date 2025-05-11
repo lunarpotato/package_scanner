@@ -10,12 +10,13 @@ pfad = aktuellerPfad.parent / 'test'
 packageJsonObjects = FindFile(pfad)
 nodeLockJson = readNodePackage(pfad)
 
-dependencyPropsDic = packageJsonObjects['dependencies']
+dependencyPropsDic = packageJsonObjects['dependencies'] | packageJsonObjects['devDependencies']
 
-devDependencyPropsDic = packageJsonObjects['devDependencies']
+# devDependencyPropsDic = packageJsonObjects['devDependencies']
 
 
 nodePackageProps = nodeLockJson['packages']
+
 
 missedProps = list()
 credentials = list()
