@@ -27,9 +27,11 @@ for key in dependencyPropsDic:
     #Ist das Package vorhanden?
     if prop == None:
         missedProps.append(key)
+        
     else:
         packageCredential = checkVersion(nodePackageProps, strNodeModules, dependencyPropsDic, key)
-        credentials.append(packageCredential)
+        if packageCredential != None:
+            credentials.append(packageCredential)
 
 
 anzahlElemente = len(missedProps)         
