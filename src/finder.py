@@ -5,17 +5,13 @@ def FindFile(pfad):
     for datei in pfad.iterdir():
         dateiname = datei.name 
 
-        if dateiname == 'testpackage.json':
+        if dateiname == 'package.json':
         
             with datei.open() as f:
                 dateiInhalt = f.read()
                 packageJson = json.loads(dateiInhalt)
     return packageJson
             
-
-
-
-
 def readNodePackage(pfad):
     """Lies die package.lock.json im node_modules
         Returns: dic: package im json Format    

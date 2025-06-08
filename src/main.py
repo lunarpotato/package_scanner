@@ -2,9 +2,7 @@ from pathlib import Path
 from finder import FindFile, readNodePackage
 import json
 from tools import checkVersion 
-aktuellerPfad = Path(__file__).resolve().parent
-
-pfad = aktuellerPfad.parent / 'test'   
+pfad = Path(__file__).resolve().parent
 
 #dictionaries aus den json files erstellen:
 packageJsonObjects = FindFile(pfad)
@@ -12,11 +10,7 @@ nodeLockJson = readNodePackage(pfad)
 
 dependencyPropsDic = packageJsonObjects['dependencies'] | packageJsonObjects['devDependencies']
 
-# devDependencyPropsDic = packageJsonObjects['devDependencies']
-
-
 nodePackageProps = nodeLockJson['packages']
-
 
 missedProps = list()
 credentials = list()
@@ -39,6 +33,7 @@ anzahlElemente = len(missedProps)
 if anzahlElemente >0:
     print('Folgende Packages wurden nicht installiert: ', missedProps)
            
+else: print('Alle Packages installiert')
 
 anzahlCredentials = len(credentials)
 if anzahlCredentials >0:
@@ -48,3 +43,6 @@ if anzahlCredentials >0:
         nodeVersion = element.nodePackageVersion
         jsonVersion = element.jsonPackageVersion
         print(packageName, 'installiert: ' + nodeVersion, 'nicht installiert: ' + jsonVersion)
+
+else: print('Alle Versionen stimmen überein')
+
