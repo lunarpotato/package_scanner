@@ -1,9 +1,19 @@
 from pathlib import Path
+import sys
 from finder import FindFile, readNodePackage
 import json
 from tools import checkVersion 
-pfad = Path(__file__).resolve().parent
+print('---------------------------')
+print('Package Scanner starting...')
+print('---------------------------')
 
+# pfad = Path(__file__).resolve().parent
+
+if getattr(sys, 'frozen', False):
+    pfad = Path(sys.executable).resolve().parent
+else:
+    pfad = Path(__file__).resolve().parent
+    
 #dictionaries aus den json files erstellen:
 packageJsonObjects = FindFile(pfad)
 nodeLockJson = readNodePackage(pfad)
@@ -33,7 +43,9 @@ anzahlElemente = len(missedProps)
 if anzahlElemente >0:
     print('Following packages missing: ', missedProps)
            
-else: print('All packages installed')
+else: 
+    print('All packages installed')
+    input('press any key to continue.')
 
 anzahlCredentials = len(credentials)
 if anzahlCredentials >0:
@@ -44,5 +56,7 @@ if anzahlCredentials >0:
         jsonVersion = element.jsonPackageVersion
         print('Installed version of', packageName, ': ' + nodeVersion, ', current version: ' + jsonVersion, 'type "npm install" to update')
 
-else: print('All versions match')
+else: 
+    print('All versions match')
+    input('press any key to exit.')
 
