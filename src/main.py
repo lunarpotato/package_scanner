@@ -31,18 +31,18 @@ for key in dependencyPropsDic:
 
 anzahlElemente = len(missedProps)         
 if anzahlElemente >0:
-    print('Folgende Packages wurden nicht installiert: ', missedProps)
+    print('Following packages missing: ', missedProps)
            
-else: print('Alle Packages installiert')
+else: print('All packages installed')
 
 anzahlCredentials = len(credentials)
 if anzahlCredentials >0:
-    print('Folgende Versionen stimmen nicht überein:')
+    print('These versions are not matching:')
     for element in credentials:
         packageName = element.nodePackageName
         nodeVersion = element.nodePackageVersion
         jsonVersion = element.jsonPackageVersion
-        print(packageName, 'installiert: ' + nodeVersion, 'nicht installiert: ' + jsonVersion)
+        print('Installed version of', packageName, ': ' + nodeVersion, ', current version: ' + jsonVersion, 'type "npm install" to update')
 
-else: print('Alle Versionen stimmen überein')
+else: print('All versions match')
 
